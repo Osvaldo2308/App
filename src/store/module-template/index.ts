@@ -7,7 +7,7 @@ import getters from './getters';
 import mutations from './mutations';
 
 
-const exampleModule: Module<ExampleStateInterface, StateInterface> = {
+const placesModule: Module<ExampleStateInterface, StateInterface> = {
     namespaced: true,
     actions,
     getters,
@@ -16,4 +16,4 @@ const exampleModule: Module<ExampleStateInterface, StateInterface> = {
 }
 
 
-export default exampleModule;
+export default placesModule;

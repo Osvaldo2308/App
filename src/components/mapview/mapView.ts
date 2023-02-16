@@ -1,13 +1,15 @@
 import { defineComponent, ref, onMounted, reactive, readonly, watch } from 'vue';
-import { usePlaceStore } from '../../composables/usePlaceStore';
-import Mapboxgl from 'mapbox-gl';
+import { usePlaceStore, useMapStore } from '@/composables';
 
+import Mapboxgl from 'mapbox-gl';
 
 export default defineComponent({
     name: 'MapView',
     setup(){
         const mapElement = ref<HTMLDivElement>();
         const{userLocation, isUserLocationReady} = usePlaceStore()
+
+        const {setMap} = useMapStore();
 
         const initMap = async() =>{
             if(!mapElement.value) throw new Error('Div Elemento no existe');
@@ -21,6 +23,20 @@ export default defineComponent({
                 center: userLocation.value, // starting position [lng, lat]
                 zoom: 15, // starting zoom
                 });
+
+                const myLocationPopup = new Mapboxgl.Popup()
+                .setLngLat( userLocation.value)
+                .setHTML(`
+                <h4>Aquí estoy</h4>
+                <p>Actualmente en Polanco</p>
+                `)
+
+                const myLocationMarker = new Mapboxgl.Marker()
+                .setLngLat(userLocation.value)
+                .setPopup(myLocationPopup)
+                .addTo(map);
+
+                setMap(map)
         }
         onMounted(()=>{
         if (isUserLocationReady.value) 
