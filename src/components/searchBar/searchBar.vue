@@ -18,13 +18,13 @@
 <style scoped>
 .search-container{
     position: fixed;
-    top: 30px;
-    left: 30px;
+    top: 4px;
+    left: 10px;
     background-color: white;
     z-index: 999;
-    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     width: 250px;
-    border-radius: 12px !important;
+    border-radius: 5px !important;
     overflow: hidden;
     padding: 5px;
 }
